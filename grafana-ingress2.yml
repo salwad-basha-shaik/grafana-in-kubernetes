@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grafana-prometheus-ingress
+  namespace: grafana
+  annotations:
+    kubernetes.io/rewrite-target: /
+    kubernetes.io/ssl-redirect: "true"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+      - amp.corp.equinix.com
+    secretName: ampcorp-secret-tls
+  rules:
+  - host: amp.corp.equinix.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: /grafana
+        backend:
+          service:
+            name: grafana
+            port:
+              number: 30029
+#        - path: /prometheus
+ #         pathType: Prefix
+  #        backend:
+   #         service:
+    #          name: prometheus-server
+     #         port:
+      #          number: 30009

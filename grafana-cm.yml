@@ -1,0 +1,37 @@
+apiVersion: v1
+data:
+  grafana.ini: |
+    [analytics]
+    check_for_updates = true
+    [grafana_net]
+    url = https://grafana.net
+    [log]
+    mode = console
+    [paths]
+    data = /var/lib/grafana/
+    logs = /var/log/grafana
+    plugins = /var/lib/grafana/plugins
+    provisioning = /etc/grafana/provisioning
+   # [server]
+   # cert_file = /etc/grafana/amp_corp_equinix_com.crt
+   # cert_key = /etc/grafana/amp_corp_equinix_com.key
+   # domain = amp.corp.equinix.com
+   # enforce_domain = false
+   # protocol = https
+   # root_url = https://amp.corp.equinix.com/grafana
+kind: ConfigMap
+metadata:
+  annotations:
+    meta.helm.sh/release-name: grafana
+    meta.helm.sh/release-namespace: grafana
+  creationTimestamp: "2024-05-25T20:14:04Z"
+  labels:
+    app.kubernetes.io/instance: grafana
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/version: 10.4.1
+    helm.sh/chart: grafana-7.3.11
+  name: grafana
+  namespace: grafana
+  resourceVersion: "1219316"
+  uid: fe66e0bb-4b8b-40dc-b779-975189615753

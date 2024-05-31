@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana-server-ext
+spec:
+  type: NodePort
+  ports:
+    - port: 30030  #cluster port
+      targetPort: 3000 #container port i.e for grafana it is 3000
+      nodePort: 30040 #
+      name: http
+  selector:
+    app.kubernetes.io/instance: grafana
+    app.kubernetes.io/name: grafana
+
